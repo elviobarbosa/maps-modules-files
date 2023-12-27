@@ -25,3 +25,14 @@ export function replacePrefixes(content: string, prefixCamelCase: string, prefix
         .replace(/\[PREFIX-CAMELCASE\]/g, prefixCamelCase)
         .replace(/\[PREFIX-KABEBCASE\]/g, prefixKebabCase);
 }
+
+// function getCodeAsString(filePath: string): string | null {
+//     try {
+//         const content = fs.readFileSync(filePath, 'utf-8');
+//         return content;
+//     } catch (error) {
+//         console.error(`Erro ao ler o arquivo ${filePath}: ${error}`);
+//         return null;
+//     }
+// }
+

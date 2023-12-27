@@ -160,6 +160,15 @@ function replacePrefixes(content, prefixCamelCase, prefixKebabCase) {
         .replace(/\[PREFIX-KABEBCASE\]/g, prefixKebabCase);
 }
 exports.replacePrefixes = replacePrefixes;
+// function getCodeAsString(filePath: string): string | null {
+//     try {
+//         const content = fs.readFileSync(filePath, 'utf-8');
+//         return content;
+//     } catch (error) {
+//         console.error(`Erro ao ler o arquivo ${filePath}: ${error}`);
+//         return null;
+//     }
+// }
 
 
 /***/ })
