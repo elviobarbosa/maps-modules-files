@@ -1,0 +1,22 @@
+import { Injectable } from '@angular/core';
+import { MapsActionUsecase } from 'maps-angular-components';
+
+import { Observable } from 'rxjs';
+import { [PREFIX-CAMELCASE]Repository } from '../repository/[PREFIX-KABEBCASE].repository';
+import { [PREFIX-CAMELCASE]EditBodyOutput, [PREFIX-CAMELCASE]Response } from '../entities/[PREFIX-KABEBCASE]-resquest-response.entity';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class [PREFIX-CAMELCASE]UpdateUsecase extends MapsActionUsecase<
+[PREFIX-CAMELCASE]UpdateBodyOutput, [PREFIX-CAMELCASE]Response> {
+    
+  constructor(private readonly _repository: [PREFIX-CAMELCASE]Repository) {
+    super();
+  }
+
+  protected action = (data: [PREFIX-CAMELCASE]UpdateBodyOutput): Observable<[PREFIX-CAMELCASE]Response> => {
+    return this._repository.update(data);
+  };
+}

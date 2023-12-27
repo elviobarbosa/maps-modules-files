@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import { MapsPageResponse, MapsPaginatorUsecase } from 'maps-angular-components';
+import { [PREFIX-CAMELCASE]Repository } from '../repository/[PREFIX-KABEBCASE].repository';
+import { Observable } from 'rxjs';
+import { [PREFIX-CAMELCASE]Filter, [PREFIX-CAMELCASE]Response } from '../entities/[PREFIX-KABEBCASE]-resquest-response.entity';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class [PREFIX-CAMELCASE]ListUsecase extends MapsPaginatorUsecase<[PREFIX-CAMELCASE]Filter, [PREFIX-CAMELCASE]Response> {
+  constructor(private readonly _repository: [PREFIX-CAMELCASE]Repository) {
+    super();
+  }
+
+  protected action = (busca: string): Observable<MapsPageResponse<[PREFIX-CAMELCASE]Response>> => {
+    return this._repository.list(busca);
+  };
+}

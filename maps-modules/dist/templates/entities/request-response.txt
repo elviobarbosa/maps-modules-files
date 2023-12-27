@@ -1,0 +1,21 @@
+
+export type [PREFIX-CAMELCASE]CreateBodyOutput = {
+ 
+}
+
+export type [PREFIX-CAMELCASE]UpdateBodyOutput = {
+    
+}
+
+export type [PREFIX-CAMELCASE]Response = {
+    
+}
+
+export type [PREFIX-CAMELCASE]Filter = {
+      
+}
+
+export type [PREFIX-CAMELCASE]ActiveBodyOutput = {
+    id: number,
+    active: boolean
+}
