@@ -3,7 +3,7 @@ import { MapsActionUsecase } from 'maps-angular-components';
 
 import { Observable } from 'rxjs';
 import { [PREFIX-CAMELCASE]Repository } from '../repository/[PREFIX-KABEBCASE].repository';
-import { [PREFIX-CAMELCASE]EditBodyOutput, [PREFIX-CAMELCASE]Response } from '../entities/[PREFIX-KABEBCASE]-resquest-response.entity';
+import { [PREFIX-CAMELCASE]UpdateBodyOutput, [PREFIX-CAMELCASE]Response } from '../entities/[PREFIX-KABEBCASE]-resquest-response.entity';
 
 
 @Injectable({
