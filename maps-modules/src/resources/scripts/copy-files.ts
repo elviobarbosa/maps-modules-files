@@ -23,7 +23,7 @@ export function copyFiles(srcPath: string, destPath: string, selectedFolders: st
             if (selectedFolders.some(folder => destFilePath.startsWith(folder))) {
                 const fileExtension = path.extname(destFilePath);
                 const fileNameWithoutExtension = path.basename(destFilePath, fileExtension);
-                const newFileName = (fileNameWithoutExtension.startsWith('-') ? `${prefix.kebabCase}${fileNameWithoutExtension}.ts` : `${prefix.kebabCase}.${fileNameWithoutExtension}.ts`);
+                const newFileName = (fileNameWithoutExtension.startsWith('-') ? `${prefix.kebabCase}${fileNameWithoutExtension}` : `${prefix.kebabCase}.${fileNameWithoutExtension}`);
                 const newDestFilePath = path.join(destPath, newFileName);
                 const fileContent = fs.readFileSync(srcFilePath, 'utf-8');
                 const modifiedContent = replacePrefixes(fileContent, prefix.camelCase, prefix.kebabCase);
