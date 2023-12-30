@@ -42,13 +42,13 @@ export function activate(context: vscode.ExtensionContext) {
             const folderPathToCreate = path.join(workspacePath || '', folder);
             
 			if (!fs.existsSync(folderPathToCreate)) {
-				if (folder !== '/') {
+				//if (folder !== '/') {
 					fs.mkdirSync(folderPathToCreate, { recursive: true });
-				}
+				//}
 
 				if (folder === '/') {
 					createFiles(
-						'', 
+						folderPathToCreate, 
 						workspacePath || '',
 						[
 							{
@@ -70,7 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
 						workspacePath || '',
 						[
 							{
-								fileName: 'geral.entity.ts',
+								fileName: 'request-response.entity.ts',
 								content: 'entities/request-response.txt'
 							},
 						],

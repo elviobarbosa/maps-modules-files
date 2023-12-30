@@ -4,7 +4,7 @@ import { environment } from 'projects/tesouraria/src/environments/environment';
 import { Observable, map } from 'rxjs';
 import { MapsPageResponse } from 'maps-angular-components';
 import { SpringPageResponse } from 'projects/tesouraria/src/app/shared/interfaces/page.interface';
-import { [PREFIX-CAMELCASE]ActiveBodyOutput, [PREFIX-CAMELCASE]Response } from '../entities/[PREFIX-KABEBCASE]-resgate-resquest-response.entity';
+import { [PREFIX-CAMELCASE]ActiveBodyOutput, [PREFIX-CAMELCASE]Response } from '../entities/[PREFIX-KABEBCASE]-resquest-response.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class [PREFIX-CAMELCASE]Repository {
 
   constructor(private readonly _http: HttpClient) { }
 
-  save(item: any): Observable<any> {
+  create(item: any): Observable<any> {
     return this._http.post<any>(`${environment.BACKEND_URL}/endpoint`, item);
   }
 
