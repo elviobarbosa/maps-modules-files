@@ -1,7 +1,8 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
 import * as path from 'path';
-import { createFiles, formatPrefix } from './utils';
+import { formatPrefix } from './resources/scripts/format-prefix';
+import { copyFiles } from './resources/scripts/copy-files';
+
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -27,107 +28,12 @@ export function activate(context: vscode.ExtensionContext) {
             prompt: 'Qual o nome do módulo?'
         });
 
-        const folderStructure = [
-			'/',
-			'components', 
-			'containers', 
-			'services', 
-			'services/entities', 
-			'services/repository',
-			'services/usecases',
-			'services/mapper'
-		];
+		const templatePath = path.join(__dirname, 'templates');
+		const destinationPath = workspacePath;
 
-        folderStructure.forEach(folder => {
-            const folderPathToCreate = path.join(workspacePath || '', folder);
-            
-			if (!fs.existsSync(folderPathToCreate)) {
-				//if (folder !== '/') {
-					fs.mkdirSync(folderPathToCreate, { recursive: true });
-				//}
-
-				if (folder === '/') {
-					createFiles(
-						folderPathToCreate, 
-						workspacePath || '',
-						[
-							{
-								fileName: 'module.ts',
-								content: 'module.txt'
-							},
-							{
-								fileName: 'routing.module.ts',
-								content: 'routing.module.txt'
-							},
-						],
-						formatPrefix(prefix)
-					);
-				}		
-
-				if (folder === 'services/entities') {
-					createFiles(
-						folderPathToCreate, 
-						workspacePath || '',
-						[
-							{
-								fileName: 'request-response.entity.ts',
-								content: 'entities/request-response.txt'
-							},
-						],
-						formatPrefix(prefix)
-					);
-				}
-
-				if (folder === 'services/repository') {
-					createFiles(
-						folderPathToCreate, 
-						workspacePath || '',
-						[
-							{
-								fileName: 'repository.ts',
-								content: 'repository/repository.txt'
-							},
-						],
-						formatPrefix(prefix)
-					);
-				}
-
-				if (folder === 'services/usecases') {
-					createFiles(
-						folderPathToCreate, 
-						workspacePath || '',
-						[
-							{
-								fileName: 'active.usecase.ts',
-								content: 'usecases/active.txt'
-							},
-							{
-								fileName: 'byid.usecase.ts',
-								content: 'usecases/byid.txt'
-							},
-							{
-								fileName: 'create.usecase.ts',
-								content: 'usecases/create.txt'
-							},
-							{
-								fileName: 'delete.usecase.ts',
-								content: 'usecases/delete.txt'
-							},
-							{
-								fileName: 'list.usecase.ts',
-								content: 'usecases/list.txt'
-							},
-							{
-								fileName: 'update.usecase.ts',
-								content: 'usecases/update.txt'
-							} 
-						],
-						formatPrefix(prefix)
-					);
-				}
-			}
-        });
-
+		copyFiles(templatePath, destinationPath, selectedFolders.map(uri => uri.fsPath), formatPrefix(prefix));
+        
+        
         vscode.window.showInformationMessage('Arquivos criados com sucesso :]');
 	});
 
