@@ -3,34 +3,41 @@ import * as path from 'path';
 import { FormatedPrefixType } from './format-prefix';
 import { replacePrefixes } from './replace-prefixes';
 
-export function copyFiles(srcPath: string, destPath: string, selectedFolders: string[], prefix: FormatedPrefixType) {
+export function copyFiles(srcPath: string, destPath: string, prefix: FormatedPrefixType) {
     if (!fs.existsSync(destPath)) {
         fs.mkdirSync(destPath, { recursive: true });
     }
 
-    const files = fs.readdirSync(srcPath);
+    const items = fs.readdirSync(srcPath);
 
-    files.forEach(file => {
-        const srcFilePath = path.join(srcPath, file);
-        const destFilePath = path.join(destPath, file);
+    items.forEach(item => {
+        const srcItemPath = path.join(srcPath, item);
+        const destItemPath = path.join(destPath, item);
 
-        const stats = fs.statSync(srcFilePath);
+        const stats = fs.statSync(srcItemPath);
 
         if (stats.isDirectory()) {
-            copyFiles(srcFilePath, destFilePath, selectedFolders, prefix);
-        } else {
-    
-            if (selectedFolders.some(folder => destFilePath.startsWith(folder))) {
-                const fileExtension = path.extname(destFilePath);
-                const fileNameWithoutExtension = path.basename(destFilePath, fileExtension);
-                const newFileName = (fileNameWithoutExtension.startsWith('-') ? `${prefix.kebabCase}${fileNameWithoutExtension}` : `${prefix.kebabCase}.${fileNameWithoutExtension}`);
-                const newDestFilePath = path.join(destPath, newFileName);
-                const fileContent = fs.readFileSync(srcFilePath, 'utf-8');
-                const modifiedContent = replacePrefixes(fileContent, prefix.camelCase, prefix.kebabCase);
+           // if (item.startsWith('PREFIX-KEBABCASE')) {
+                // const newFolderName = item.replace('PREFIX-KEBABCASE', prefix.kebabCase);
+                // const newDestItemPath = path.join(destPath, newFolderName);
 
-                fs.writeFileSync(newDestFilePath, modifiedContent);
-                
-            }
+                // // Verifica se o diretório de destino existe antes de renomear
+                // if (!fs.existsSync(newDestItemPath)) {
+                //     fs.renameSync(destItemPath, newDestItemPath);
+                // }
+
+            //     copyFiles(srcItemPath, destItemPath, prefix);
+            // } else {
+                copyFiles(srcItemPath, destItemPath, prefix);
+           // }
+        } else {
+            const newFileName = (item.startsWith('-') ? `${prefix.kebabCase}${item}` : `${prefix.kebabCase}.${item}`);
+            const newDestItemPath = path.join(destPath, newFileName);
+
+            const fileContent = fs.readFileSync(srcItemPath, 'utf-8');
+            const modifiedContent = replacePrefixes(fileContent, prefix);
+
+            fs.writeFileSync(newDestItemPath, modifiedContent);
         }
     });
 }

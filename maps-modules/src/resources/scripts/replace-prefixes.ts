@@ -1,3 +1,5 @@
+import { FormatedPrefixType } from "./format-prefix";
+
 /**
  * 
  * @param content conteúdo do arquivo
@@ -5,8 +7,12 @@
  * @param prefixKebabCase prefixo em Kebab Case 
  * @returns 
  */
-export function replacePrefixes(content: string, prefixCamelCase: string, prefixKebabCase: string): string {
+export function replacePrefixes(content: string, prefix: FormatedPrefixType): string {
+    // Substitui [PREFIX-CAMELCASE] e [PREFIX-KEBABCASE] no conteúdo
+    const camelCasePrefixRegex = /\[PREFIX-CAMELCASE\]/g;
+    const kebabCasePrefixRegex = /\[PREFIX-KEBABCASE\]/g;
+
     return content
-        .replace(/\[PREFIX-CAMELCASE\]/g, prefixCamelCase)
-        .replace(/\[PREFIX-KABEBCASE\]/g, prefixKebabCase);
+        .replace(camelCasePrefixRegex, prefix.camelCase)
+        .replace(kebabCasePrefixRegex, prefix.kebabCase);
 }
