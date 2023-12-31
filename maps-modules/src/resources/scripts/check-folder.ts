@@ -9,7 +9,6 @@ export function checkFolderNames(destPath: string, prefix: FormatedPrefixType) {
         const itemPath = path.join(destPath, item);
 
         if (fs.statSync(itemPath).isDirectory()) {
-            // Se for um diretório, chama recursivamente a função
             checkFolderNames(itemPath, prefix);
         }
 
@@ -17,7 +16,6 @@ export function checkFolderNames(destPath: string, prefix: FormatedPrefixType) {
             const newItemName = item.replace('PREFIX-KEBABCASE', prefix.kebabCase);
             const newItemPath = path.join(destPath, newItemName);
 
-            // Verifica se o item de destino existe antes de renomear
             if (!fs.existsSync(newItemPath)) {
                 fs.renameSync(itemPath, newItemPath);
             }

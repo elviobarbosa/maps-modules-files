@@ -8,7 +8,6 @@ import { FormatedPrefixType } from "./format-prefix";
  * @returns 
  */
 export function replacePrefixes(content: string, prefix: FormatedPrefixType): string {
-    // Substitui [PREFIX-CAMELCASE] e [PREFIX-KEBABCASE] no conteúdo
     const camelCasePrefixRegex = /\[PREFIX-CAMELCASE\]/g;
     const kebabCasePrefixRegex = /\[PREFIX-KEBABCASE\]/g;
 

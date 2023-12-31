@@ -17,19 +17,7 @@ export function copyFiles(srcPath: string, destPath: string, prefix: FormatedPre
         const stats = fs.statSync(srcItemPath);
 
         if (stats.isDirectory()) {
-           // if (item.startsWith('PREFIX-KEBABCASE')) {
-                // const newFolderName = item.replace('PREFIX-KEBABCASE', prefix.kebabCase);
-                // const newDestItemPath = path.join(destPath, newFolderName);
-
-                // // Verifica se o diretório de destino existe antes de renomear
-                // if (!fs.existsSync(newDestItemPath)) {
-                //     fs.renameSync(destItemPath, newDestItemPath);
-                // }
-
-            //     copyFiles(srcItemPath, destItemPath, prefix);
-            // } else {
-                copyFiles(srcItemPath, destItemPath, prefix);
-           // }
+           copyFiles(srcItemPath, destItemPath, prefix);
         } else {
             const newFileName = (item.startsWith('-') ? `${prefix.kebabCase}${item}` : `${prefix.kebabCase}.${item}`);
             const newDestItemPath = path.join(destPath, newFileName);
