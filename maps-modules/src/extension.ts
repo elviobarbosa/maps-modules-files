@@ -7,9 +7,9 @@ import { checkFolderNames } from './resources/scripts/check-folder';
 
 export function activate(context: vscode.ExtensionContext) {
 
-    console.log('Congratulations, your extension "maps-modules" is now active!');
+    console.log('Congratulations, your extension "template-structure" is now active!');
 
-    let disposable = vscode.commands.registerCommand('maps-modules.createMapsStructure', async () => {
+    let disposable = vscode.commands.registerCommand('template-structure.create', async () => {
 
         const templateFolders = await vscode.window.showOpenDialog({
             canSelectFiles: false,

@@ -1,6 +1,6 @@
 {
-  "name": "maps-modules",
-  "displayName": "Maps Modules",
+  "name": "template-structure",
+  "displayName": "Template Structure",
   "description": "",
   "version": "0.0.2",
   "engines": {
@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "maps-modules.createMapsStructure",
-        "title": "Maps Structure"
+        "command": "template-structure.create",
+        "title": "Template Structure"
       }
     ]
   },
